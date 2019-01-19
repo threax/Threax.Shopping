@@ -1,9 +1,9 @@
 version: '3.4'
 
 services:
-  threax.shopping:
+  shopping:
     image: threax.shopping
-    container_name: threax.shopping
+    container_name: shopping
     build:
       context: .
       dockerfile: Shopping/Dockerfile
@@ -14,7 +14,7 @@ services:
         source: ../TrustedRoots
         target: /usr/local/share/ca-certificates
       - type: bind
-        source: ../DevData/threax.shopping
+        source: ../DevData/shopping
         target: /appdata
 
 networks:
