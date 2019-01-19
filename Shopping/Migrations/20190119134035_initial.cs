@@ -32,17 +32,17 @@ namespace Shopping.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Values",
+                name: "Stores",
                 columns: table => new
                 {
-                    ValueId = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 450, nullable: false),
+                    StoreId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 1000, nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Values", x => x.ValueId);
+                    table.PrimaryKey("PK_Stores", x => x.StoreId);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,7 +81,7 @@ namespace Shopping.Migrations
                 name: "spc.auth.UsersToRoles");
 
             migrationBuilder.DropTable(
-                name: "Values");
+                name: "Stores");
 
             migrationBuilder.DropTable(
                 name: "spc.auth.Roles");

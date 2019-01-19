@@ -9,13 +9,13 @@ using Shopping.Repository;
 
 namespace Shopping.Repository.Config
 {
-    public partial class ValueRepositoryConfig : IServiceSetup
+    public partial class StoreRepositoryConfig : IServiceSetup
     {
         public void ConfigureServices(IServiceCollection services)
         {
             OnConfigureServices(services);
 
-            services.TryAddScoped<IValueRepository, ValueRepository>();
+            services.TryAddScoped<IStoreRepository, StoreRepository>();
         }
 
         partial void OnConfigureServices(IServiceCollection services);

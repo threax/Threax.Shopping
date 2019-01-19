@@ -14,12 +14,12 @@ using Threax.AspNetCore.Halcyon.Ext.ValueProviders;
 namespace Shopping.ViewModels 
 {
     [HalModel]
-    [HalSelfActionLink(typeof(ValuesController), nameof(ValuesController.Get))]
-    [HalActionLink(typeof(ValuesController), nameof(ValuesController.Update))]
-    [HalActionLink(typeof(ValuesController), nameof(ValuesController.Delete))]
-    public partial class Value : IValue, IValueId, ICreatedModified
+    [HalSelfActionLink(typeof(StoresController), nameof(StoresController.Get))]
+    [HalActionLink(typeof(StoresController), nameof(StoresController.Update))]
+    [HalActionLink(typeof(StoresController), nameof(StoresController.Delete))]
+    public partial class Store : IStore, IStoreId, ICreatedModified
     {
-        public Guid ValueId { get; set; }
+        public Guid StoreId { get; set; }
 
         public String Name { get; set; }
 

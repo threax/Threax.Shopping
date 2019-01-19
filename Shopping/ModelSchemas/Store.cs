@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Threax.AspNetCore.Models;
 
 namespace Shopping.ModelSchemas
 {
-    [RequireAuthorization(typeof(Roles), nameof(Roles.EditValues))]
-    public abstract class Value
+    public class Store
     {
-        [Required]
-        [MaxLength(450)]
+        [Required(ErrorMessage = "You must include a name.")]
+        [MaxLength(1000, ErrorMessage = "The store name must be less than 1000 characters.")]
         public String Name { get; set; }
     }
 }

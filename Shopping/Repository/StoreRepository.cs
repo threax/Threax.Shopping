@@ -14,18 +14,18 @@ using Threax.AspNetCore.Halcyon.Ext;
 
 namespace Shopping.Repository
 {
-    public partial class ValueRepository : IValueRepository
+    public partial class StoreRepository : IStoreRepository
     {
         private AppDbContext dbContext;
         private AppMapper mapper;
 
-        public ValueRepository(AppDbContext dbContext, AppMapper mapper)
+        public StoreRepository(AppDbContext dbContext, AppMapper mapper)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
         }
 
-        public async Task<ValueCollection> List(ValueQuery query)
+        public async Task<StoreCollection> List(StoreQuery query)
         {
             var dbQuery = await query.Create(this.Entities);
 
@@ -33,33 +33,33 @@ namespace Shopping.Repository
             dbQuery = dbQuery.Skip(query.SkipTo(total)).Take(query.Limit);
             var results = await dbQuery.ToListAsync();
 
-            return new ValueCollection(query, total, results.Select(i => mapper.MapValue(i, new Value())));
+            return new StoreCollection(query, total, results.Select(i => mapper.MapStore(i, new Store())));
         }
 
-        public async Task<Value> Get(Guid valueId)
+        public async Task<Store> Get(Guid storeId)
         {
-            var entity = await this.Entity(valueId);
-            return mapper.MapValue(entity, new Value());
+            var entity = await this.Entity(storeId);
+            return mapper.MapStore(entity, new Store());
         }
 
-        public async Task<Value> Add(ValueInput value)
+        public async Task<Store> Add(StoreInput store)
         {
-            var entity = mapper.MapValue(value, new ValueEntity());
+            var entity = mapper.MapStore(store, new StoreEntity());
             this.dbContext.Add(entity);
             await SaveChanges();
-            return mapper.MapValue(entity, new Value());
+            return mapper.MapStore(entity, new Store());
         }
 
-        public async Task<Value> Update(Guid valueId, ValueInput value)
+        public async Task<Store> Update(Guid storeId, StoreInput store)
         {
-            var entity = await this.Entity(valueId);
+            var entity = await this.Entity(storeId);
             if (entity != null)
             {
-                mapper.MapValue(value, entity);
+                mapper.MapStore(store, entity);
                 await SaveChanges();
-                return mapper.MapValue(entity, new Value());
+                return mapper.MapStore(entity, new Store());
             }
-            throw new KeyNotFoundException($"Cannot find value {valueId.ToString()}");
+            throw new KeyNotFoundException($"Cannot find store {storeId.ToString()}");
         }
 
         public async Task Delete(Guid id)
@@ -72,15 +72,15 @@ namespace Shopping.Repository
             }
         }
 
-        public virtual async Task<bool> HasValues()
+        public virtual async Task<bool> HasStores()
         {
             return await Entities.CountAsync() > 0;
         }
 
-        public virtual async Task AddRange(IEnumerable<ValueInput> values)
+        public virtual async Task AddRange(IEnumerable<StoreInput> stores)
         {
-            var entities = values.Select(i => mapper.MapValue(i, new ValueEntity()));
-            this.dbContext.Values.AddRange(entities);
+            var entities = stores.Select(i => mapper.MapStore(i, new StoreEntity()));
+            this.dbContext.Stores.AddRange(entities);
             await SaveChanges();
         }
 
@@ -89,17 +89,17 @@ namespace Shopping.Repository
             await this.dbContext.SaveChangesAsync();
         }
 
-        private DbSet<ValueEntity> Entities
+        private DbSet<StoreEntity> Entities
         {
             get
             {
-                return dbContext.Values;
+                return dbContext.Stores;
             }
         }
 
-        private Task<ValueEntity> Entity(Guid valueId)
+        private Task<StoreEntity> Entity(Guid storeId)
         {
-            return Entities.Where(i => i.ValueId == valueId).FirstOrDefaultAsync();
+            return Entities.Where(i => i.StoreId == storeId).FirstOrDefaultAsync();
         }
     }
 }

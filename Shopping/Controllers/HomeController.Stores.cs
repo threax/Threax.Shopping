@@ -9,8 +9,8 @@ namespace Shopping.Controllers
 {
     public partial class HomeController
     {
-        [Authorize(Roles = Roles.EditValues)]
-        public IActionResult Values()
+        [Authorize(Roles = Roles.EditStores)]
+        public IActionResult Stores()
         {
             return View();
         }

@@ -2,7 +2,7 @@ import * as client from 'clientlibs.ServiceClient';
 import * as hyperCrud from 'hr.widgets.HypermediaCrudService';
 import * as di from 'hr.di';
 
-export class ValueCrudInjector extends hyperCrud.AbstractHypermediaPageInjector {
+export class StoreCrudInjector extends hyperCrud.AbstractHypermediaPageInjector {
     public static get InjectorArgs(): di.DiFunction<any>[] {
         return [client.EntryPointInjector];
     }
@@ -13,25 +13,25 @@ export class ValueCrudInjector extends hyperCrud.AbstractHypermediaPageInjector 
 
     async list(query: any): Promise<hyperCrud.HypermediaCrudCollection> {
         var entry = await this.injector.load();
-        return entry.listValues(query);
+        return entry.listStores(query);
     }
 
     async canList(): Promise<boolean> {
         var entry = await this.injector.load();
-        return entry.canListValues();
+        return entry.canListStores();
     }
 
-    public getDeletePrompt(item: client.ValueResult): string {
-        return "Are you sure you want to delete the value?";
+    public getDeletePrompt(item: client.StoreResult): string {
+        return "Are you sure you want to delete the store?";
     }
 
-    public getItemId(item: client.ValueResult): string | null {
-        return String(item.data.valueId);
+    public getItemId(item: client.StoreResult): string | null {
+        return String(item.data.storeId);
     }
 
-    public createIdQuery(id: string): client.ValueQuery | null {
+    public createIdQuery(id: string): client.StoreQuery | null {
         return {
-            valueId: id
+            storeId: id
         };
     }
 }

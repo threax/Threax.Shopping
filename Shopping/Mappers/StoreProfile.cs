@@ -12,36 +12,36 @@ namespace Shopping.Mappers
 {
     public partial class AppMapper
     {
-        public ValueEntity MapValue(ValueInput src, ValueEntity dest)
+        public StoreEntity MapStore(StoreInput src, StoreEntity dest)
         {
             return mapper.Map(src, dest);
         }
 
-        public Value MapValue(ValueEntity src, Value dest)
+        public Store MapStore(StoreEntity src, Store dest)
         {
             return mapper.Map(src, dest);
         }
     }
 
-    public partial class ValueProfile : Profile
+    public partial class StoreProfile : Profile
     {
-        public ValueProfile()
+        public StoreProfile()
         {
             //Map the input model to the entity
-            MapInputToEntity(CreateMap<ValueInput, ValueEntity>());
+            MapInputToEntity(CreateMap<StoreInput, StoreEntity>());
 
             //Map the entity to the view model.
-            MapEntityToView(CreateMap<ValueEntity, Value>());
+            MapEntityToView(CreateMap<StoreEntity, Store>());
         }
 
-        void MapInputToEntity(IMappingExpression<ValueInput, ValueEntity> mapExpr)
+        void MapInputToEntity(IMappingExpression<StoreInput, StoreEntity> mapExpr)
         {
-            mapExpr.ForMember(d => d.ValueId, opt => opt.Ignore())
+            mapExpr.ForMember(d => d.StoreId, opt => opt.Ignore())
                 .ForMember(d => d.Created, opt => opt.MapFrom<ICreatedResolver>())
                 .ForMember(d => d.Modified, opt => opt.MapFrom<IModifiedResolver>());
         }
 
-        void MapEntityToView(IMappingExpression<ValueEntity, Value> mapExpr)
+        void MapEntityToView(IMappingExpression<StoreEntity, Store> mapExpr)
         {
             
         }

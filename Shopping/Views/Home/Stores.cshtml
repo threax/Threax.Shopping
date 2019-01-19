@@ -1,9 +1,9 @@
 @{
-    ViewData["Title"] = "Values";
+    ViewData["Title"] = "Stores";
 }
 
 <div data-hr-controller="mainTable">
-    <h1>Values</h1>
+    <h1>Stores</h1>
     <load visible="true">
         <p>Working...</p>
     </load>
@@ -24,6 +24,7 @@
                         <td>{{name}}</td>
                         <td>
                             <button data-hr-on-click="edit" class="btn btn-default" data-hr-toggle="edit" data-hr-style-off="display:none;">Edit</button>
+                            <button data-hr-on-click="view" class="btn btn-default" data-hr-toggle="view" data-hr-style-off="display:none;">View</button>
                             <button data-hr-on-click="del" class="btn btn-default" data-hr-toggle="del" data-hr-style-off="display:none;">Delete</button>
                         </td>
                     </tr>
@@ -36,11 +37,11 @@
     </main>
 
     <error>
-        An error occured loading the values. Please try again later.
+        An error occured loading the stores. Please try again later.
     </error>
 </div>
 
-<modal data-hr-controller="entryEditor" title-text="Value" dialog-classes="modal-lg">
+<modal data-hr-controller="entryEditor" title-text="Store" dialog-classes="modal-lg">
     <load class="modal-body">
         <p>Working...</p>
     </load>

@@ -9,20 +9,20 @@ using Threax.AspNetCore.Models;
 
 namespace Shopping.Models 
 {
-    public partial interface IValue 
+    public partial interface IStore 
     {
         String Name { get; set; }
 
     }
 
-    public partial interface IValueId
+    public partial interface IStoreId
     {
-        Guid ValueId { get; set; }
+        Guid StoreId { get; set; }
     }    
 
-    public partial interface IValueQuery
+    public partial interface IStoreQuery
     {
-        Guid? ValueId { get; set; }
+        Guid? StoreId { get; set; }
 
     }
 }

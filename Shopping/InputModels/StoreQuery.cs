@@ -14,23 +14,23 @@ using System.ComponentModel.DataAnnotations;
 namespace Shopping.InputModels
 {
     [HalModel]
-    public partial class ValueQuery : PagedCollectionQuery, IValueQuery
+    public partial class StoreQuery : PagedCollectionQuery, IStoreQuery
     {
         /// <summary>
-        /// Lookup a value by id.
+        /// Lookup a store by id.
         /// </summary>
-        public Guid? ValueId { get; set; }
+        public Guid? StoreId { get; set; }
 
         /// <summary>
         /// Populate an IQueryable. Does not apply the skip or limit.
         /// </summary>
         /// <param name="query">The query to populate.</param>
         /// <returns>The query passed in populated with additional conditions.</returns>
-        public Task<IQueryable<ValueEntity>> Create(IQueryable<ValueEntity> query)
+        public Task<IQueryable<StoreEntity>> Create(IQueryable<StoreEntity> query)
         {
-            if (ValueId != null)
+            if (StoreId != null)
             {
-                query = query.Where(i => i.ValueId == ValueId);
+                query = query.Where(i => i.StoreId == StoreId);
             }
             else
             {

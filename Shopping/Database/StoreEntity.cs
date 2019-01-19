@@ -11,13 +11,13 @@ using Shopping.Models;
 
 namespace Shopping.Database 
 {
-    public partial class ValueEntity : IValue, IValueId, ICreatedModified
+    public partial class StoreEntity : IStore, IStoreId, ICreatedModified
     {
         [Key]
-        public Guid ValueId { get; set; }
+        public Guid StoreId { get; set; }
 
         [Required(ErrorMessage = "Name must have a value.")]
-        [MaxLength(450, ErrorMessage = "Name must be less than 450 characters.")]
+        [MaxLength(1000, ErrorMessage = "Name must be less than 1000 characters.")]
         public String Name { get; set; }
 
         public DateTime Created { get; set; }

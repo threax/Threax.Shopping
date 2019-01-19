@@ -4,8 +4,8 @@ using Shopping.Controllers.Api;
 
 namespace Shopping.ViewModels
 {
-    [HalActionLink(typeof(ValuesController), nameof(ValuesController.List), "ListValues")]
-    [HalActionLink(typeof(ValuesController), nameof(ValuesController.Add), "AddValue")]
+    [HalActionLink(typeof(StoresController), nameof(StoresController.List), "ListStores")]
+    [HalActionLink(typeof(StoresController), nameof(StoresController.Add), "AddStore")]
     public partial class EntryPoint
     {
         

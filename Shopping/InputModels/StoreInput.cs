@@ -12,10 +12,10 @@ using Threax.AspNetCore.Halcyon.Ext.ValueProviders;
 namespace Shopping.InputModels 
 {
     [HalModel]
-    public partial class ValueInput : IValue
+    public partial class StoreInput : IStore
     {
         [Required(ErrorMessage = "Name must have a value.")]
-        [MaxLength(450, ErrorMessage = "Name must be less than 450 characters.")]
+        [MaxLength(1000, ErrorMessage = "Name must be less than 1000 characters.")]
         public String Name { get; set; }
 
     }
