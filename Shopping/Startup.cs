@@ -22,6 +22,7 @@ using Threax.AspNetCore.IdServerAuth;
 using Threax.AspNetCore.UserBuilder;
 using Threax.AspNetCore.UserLookup.Mvc.Controllers;
 using Threax.Extensions.Configuration.SchemaBinder;
+using Shopping.Services;
 
 namespace Shopping
 {
@@ -183,6 +184,8 @@ namespace Shopping
                     .AddConsole()
                     .AddDebug();
             });
+
+            services.TryAddScoped<StoreValueProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
