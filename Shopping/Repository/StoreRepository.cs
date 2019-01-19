@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Threax.AspNetCore.Halcyon.Ext;
+using Threax.AspNetCore.Halcyon.Ext.ValueProviders;
 
 namespace Shopping.Repository
 {
@@ -82,6 +83,11 @@ namespace Shopping.Repository
             var entities = stores.Select(i => mapper.MapStore(i, new StoreEntity()));
             this.dbContext.Stores.AddRange(entities);
             await SaveChanges();
+        }
+
+        public async Task<IEnumerable<ILabelValuePair>> GetLabels()
+        {
+            return await dbContext.Stores.Select(i => new LabelValuePair<Guid>(i.Name, i.StoreId)).ToListAsync();
         }
 
         protected virtual async Task SaveChanges()

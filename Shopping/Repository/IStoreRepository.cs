@@ -5,6 +5,7 @@ using Shopping.InputModels;
 using Shopping.ViewModels;
 using Shopping.Models;
 using Threax.AspNetCore.Halcyon.Ext;
+using Threax.AspNetCore.Halcyon.Ext.ValueProviders;
 
 namespace Shopping.Repository
 {
@@ -17,5 +18,6 @@ namespace Shopping.Repository
         Task<bool> HasStores();
         Task<StoreCollection> List(StoreQuery query);
         Task<Store> Update(Guid storeId, StoreInput value);
+        Task<IEnumerable<ILabelValuePair>> GetLabels();
     }
 }
