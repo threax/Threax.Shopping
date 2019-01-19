@@ -16,6 +16,28 @@ namespace Shopping.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
 
+            modelBuilder.Entity("Shopping.Database.ItemEntity", b =>
+                {
+                    b.Property<Guid>("ItemId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000);
+
+                    b.Property<DateTime>("Modified");
+
+                    b.Property<Guid>("StoreId");
+
+                    b.HasKey("ItemId");
+
+                    b.HasIndex("StoreId");
+
+                    b.ToTable("Items");
+                });
+
             modelBuilder.Entity("Shopping.Database.StoreEntity", b =>
                 {
                     b.Property<Guid>("StoreId")
@@ -71,6 +93,14 @@ namespace Shopping.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("spc.auth.UsersToRoles");
+                });
+
+            modelBuilder.Entity("Shopping.Database.ItemEntity", b =>
+                {
+                    b.HasOne("Shopping.Database.StoreEntity", "Store")
+                        .WithMany()
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Threax.AspNetCore.UserBuilder.Entities.UserToRole", b =>

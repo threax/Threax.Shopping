@@ -24,6 +24,7 @@ namespace Shopping.InputModels
         [UiOrder]
         [UiSearch]
         [ValueProvider(typeof(Shopping.Services.StoreValueProvider))]
+        [NullValueLabel("All Stores")]
         public Guid? StoreId { get; set; }
 
 

@@ -9,7 +9,7 @@ using Shopping.Database;
 namespace Shopping.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190119134035_initial")]
+    [Migration("20190119141745_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,6 +17,28 @@ namespace Shopping.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+
+            modelBuilder.Entity("Shopping.Database.ItemEntity", b =>
+                {
+                    b.Property<Guid>("ItemId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000);
+
+                    b.Property<DateTime>("Modified");
+
+                    b.Property<Guid>("StoreId");
+
+                    b.HasKey("ItemId");
+
+                    b.HasIndex("StoreId");
+
+                    b.ToTable("Items");
+                });
 
             modelBuilder.Entity("Shopping.Database.StoreEntity", b =>
                 {
@@ -73,6 +95,14 @@ namespace Shopping.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("spc.auth.UsersToRoles");
+                });
+
+            modelBuilder.Entity("Shopping.Database.ItemEntity", b =>
+                {
+                    b.HasOne("Shopping.Database.StoreEntity", "Store")
+                        .WithMany()
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Threax.AspNetCore.UserBuilder.Entities.UserToRole", b =>

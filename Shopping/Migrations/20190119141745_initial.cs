@@ -69,6 +69,32 @@ namespace Shopping.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Items",
+                columns: table => new
+                {
+                    ItemId = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: false),
+                    StoreId = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Items", x => x.ItemId);
+                    table.ForeignKey(
+                        name: "FK_Items_Stores_StoreId",
+                        column: x => x.StoreId,
+                        principalTable: "Stores",
+                        principalColumn: "StoreId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Items_StoreId",
+                table: "Items",
+                column: "StoreId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_spc.auth.UsersToRoles_RoleId",
                 table: "spc.auth.UsersToRoles",
@@ -77,6 +103,9 @@ namespace Shopping.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Items");
+
             migrationBuilder.DropTable(
                 name: "spc.auth.UsersToRoles");
 
