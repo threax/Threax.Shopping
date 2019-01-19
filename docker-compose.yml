@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  threax.shopping:
+    image: threax.shopping
+    container_name: threax.shopping
+    build:
+      context: .
+      dockerfile: Shopping/Dockerfile
+    networks:
+      - appnet
+    volumes:
+      - type: bind
+        source: ../TrustedRoots
+        target: /usr/local/share/ca-certificates
+      - type: bind
+        source: ../DevData/threax.shopping
+        target: /appdata
+
+networks:
+  appnet:
+    external: true
