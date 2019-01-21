@@ -22,7 +22,7 @@ export class ItemCrudInjector extends hyperCrud.AbstractHypermediaPageInjector {
     }
 
     public getDeletePrompt(item: client.ItemResult): string {
-        return "Are you sure you want to delete the item?";
+        return "Delete " + item.data.description + "?";
     }
 
     public getItemId(item: client.ItemResult): string | null {
