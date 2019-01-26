@@ -4,13 +4,14 @@ WORKDIR /app
 FROM threax/build AS build
 WORKDIR /src
 COPY . .
+WORKDIR /src/Shopping
+RUN yarn run yarn-install
 RUN dotnet restore Shopping.csproj
 RUN dotnet build Shopping.csproj -c Release -o /app
-
-FROM build AS publish
-RUN yarn run yarn-install
 RUN yarn run clean
 RUN yarn run build
+
+FROM build AS publish
 RUN dotnet publish Shopping.csproj -c Release -o /app
 
 FROM base AS final

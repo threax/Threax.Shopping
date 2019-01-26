@@ -5,8 +5,8 @@ services:
     image: threax.shopping
     container_name: shopping
     build:
-      context: Shopping
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Shopping/Dockerfile
     networks:
       - appnet
     volumes:
