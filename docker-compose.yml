@@ -5,8 +5,8 @@ services:
     image: threax.shopping
     container_name: shopping
     build:
-      context: .
-      dockerfile: Shopping/Dockerfile
+      context: Shopping
+      dockerfile: Dockerfile
     networks:
       - appnet
     volumes:
@@ -16,6 +16,8 @@ services:
       - type: bind
         source: ../DevData/shopping
         target: /appdata
+    labels:
+      - "threax.nginx.host=shopping.dev.threax.com"
 
 networks:
   appnet:
