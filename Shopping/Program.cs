@@ -75,8 +75,12 @@ namespace Shopping
                         config.AddJsonFileWithInclude(Path.GetFullPath($"../appsettings.{toolsConfigName}.json"), optional: true);
                     }
 
-                    //User secrets
-                    if (!env.IsProduction())
+                    //Secrets
+                    if (File.Exists("appsettings.secrets.json"))
+                    {
+                        config.AddJsonFileWithInclude(Path.GetFullPath("appsettings.secrets.json"), optional: false);
+                    }
+                    else if (!env.IsProduction())
                     {
                         config.AddUserSecrets<Program>();
                     }
