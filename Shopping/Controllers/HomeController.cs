@@ -15,6 +15,12 @@ namespace Shopping.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public IActionResult AppStart()
+        {
+            return View();
+        }
+
         //The other view action methods are in the additional partial classes for HomeController, expand the node for
         //this class to see them.
 
