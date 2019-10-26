@@ -80,7 +80,7 @@ namespace Shopping
                     {
                         config.AddJsonFileWithInclude(Path.GetFullPath("appsettings.secrets.json"), optional: false);
                     }
-                    else if (!env.IsProduction())
+                    else
                     {
                         config.AddUserSecrets<Program>();
                     }
