@@ -34,4 +34,10 @@ export class ItemCrudInjector extends hyperCrud.AbstractHypermediaPageInjector {
             itemId: id
         };
     }
+
+    public async getSearchSchema() {
+        const entry = await this.injector.load();
+        const schema = await entry.getListItemsDocs({ includeRequest: true, includeResponse: false });
+        return schema.requestSchema;
+    }
 }

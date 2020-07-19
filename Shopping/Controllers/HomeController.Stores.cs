@@ -10,9 +10,9 @@ namespace Shopping.Controllers
     public partial class HomeController
     {
         [Authorize(Roles = Roles.EditStores)]
-        public IActionResult Stores()
+        public Task<IActionResult> Stores()
         {
-            return View();
+            return CacheUiView();
         }
     }
 }
