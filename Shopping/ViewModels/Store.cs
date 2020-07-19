@@ -14,6 +14,7 @@ using Threax.AspNetCore.Halcyon.Ext.ValueProviders;
 namespace Shopping.ViewModels 
 {
     [HalModel]
+    [CacheEndpointDoc]
     [HalSelfActionLink(typeof(StoresController), nameof(StoresController.Get))]
     [HalActionLink(typeof(StoresController), nameof(StoresController.Update))]
     [HalActionLink(typeof(StoresController), nameof(StoresController.Delete))]

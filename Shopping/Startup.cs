@@ -103,7 +103,7 @@ namespace Shopping
             var halOptions = new HalcyonConventionOptions()
             {
                 BaseUrl = appConfig.BaseUrl,
-                HalDocEndpointInfo = new HalDocEndpointInfo(typeof(EndpointDocController)),
+                HalDocEndpointInfo = new HalDocEndpointInfo(typeof(EndpointDocController), this.GetType().Assembly.ComputeMd5()),
                 EnableValueProviders = appConfig.EnableValueProviders
             };
 

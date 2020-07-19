@@ -11,6 +11,7 @@ using Threax.AspNetCore.Halcyon.Ext;
 namespace Shopping.ViewModels
 {
     [HalModel]
+    [CacheEndpointDoc]
     [HalSelfActionLink(typeof(StoresController), nameof(StoresController.List))]
     [HalActionLink(typeof(StoresController), nameof(StoresController.Get), DocsOnly = true)] //This provides access to docs for showing items
     [HalActionLink(typeof(StoresController), nameof(StoresController.List), DocsOnly = true)] //This provides docs for searching the list

@@ -12,6 +12,7 @@ using Threax.AspNetCore.Halcyon.Ext.ValueProviders;
 namespace Shopping.InputModels 
 {
     [HalModel]
+    [CacheEndpointDoc]
     public partial class StoreInput : IStore
     {
         [Required(ErrorMessage = "Name must have a value.")]

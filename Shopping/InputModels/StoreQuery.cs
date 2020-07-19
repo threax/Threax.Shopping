@@ -14,6 +14,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Shopping.InputModels
 {
     [HalModel]
+    [CacheEndpointDoc]
     public partial class StoreQuery : PagedCollectionQuery, IStoreQuery
     {
         /// <summary>
