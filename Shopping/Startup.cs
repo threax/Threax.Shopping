@@ -97,10 +97,7 @@ namespace Shopping
                 o.AppOptions = authConfig;
                 o.CookiePath = appConfig.PathBase;
                 o.AccessDeniedPath = "/Account/AccessDenied";
-                o.ConfigureIdServerMetadataJwtOptions = jwtOpt =>
-                {
-                    jwtOpt.Audience = "Threax.IdServer";
-                };
+                o.EnableIdServerMetadata = appConfig.EnableIdServerMetadata;
                 o.CustomizeCookies = cookOpt =>
                 {
                     cookOpt.BearerHttpOnly = false;
@@ -220,7 +217,7 @@ namespace Shopping
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
