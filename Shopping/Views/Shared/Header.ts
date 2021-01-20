@@ -47,8 +47,8 @@ class AppMenuController {
         this.loggedInAreaToggle.mode = accessToken !== null;
 
         let showAdmin = false;
-        showAdmin = this.stores.mode = entry.canListStores() || showAdmin;
-        showAdmin = this.users.mode = entry.canListUsers() || showAdmin;
+        showAdmin = (this.stores.mode = entry.canListStores()) || showAdmin;
+        showAdmin = (this.users.mode = entry.canListUsers()) || showAdmin;
         this.adminToggle.mode = showAdmin;
     }
 
