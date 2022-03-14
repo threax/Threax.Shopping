@@ -24,7 +24,6 @@ using Threax.AspNetCore.UserLookup.Mvc.Controllers;
 using Threax.Extensions.Configuration.SchemaBinder;
 using Shopping.Services;
 using System.Threading.Tasks;
-using Threax.Sqlite.Ext.EfCore3;
 
 namespace Shopping
 {
@@ -163,7 +162,6 @@ namespace Shopping
                 .AddTool("migrate", new ToolCommand("Migrate database to newest version. Run anytime new migrations have been added.", async a =>
                 {
                     await a.Migrate();
-                    a.Scope.ServiceProvider.GetRequiredService<AppDbContext>().ConvertToEfCore3();
                 }))
                 .AddTool("seed", new ToolCommand("Seed database data. Only needed for an empty database.", async a =>
                 {
