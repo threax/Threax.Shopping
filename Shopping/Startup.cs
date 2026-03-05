@@ -141,7 +141,7 @@ namespace Shopping
                 o.SerializerSettings.SetToHalcyonDefault();
                 o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             })
-            .AddRazorRuntimeCompilation()
+            //.AddRazorRuntimeCompilation()
             .AddConventionalIdServerMvc()
             .AddThreaxUserLookup(o =>
             {
