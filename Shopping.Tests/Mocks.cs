@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,8 +25,7 @@ namespace Shopping.Tests
         /// <returns>The passed in mockup test.</returns>
         public static Mockup SetupGlobal(this Mockup mockup)
         {
-            mockup.MockServiceCollection.AddTimeTracking();
-            mockup.MockServiceCollection.AddAppMapper(includeAutomapperConfig: true);
+            mockup.MockServiceCollection.AddAppMapper();
 
             mockup.Add<AppDbContext>(m => new AppDbContext(new DbContextOptionsBuilder<AppDbContext>()
                                                                         .UseInMemoryDatabase(Guid.NewGuid().ToString())

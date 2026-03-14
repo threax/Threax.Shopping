@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Halcyon.HAL.Attributes;
 using Threax.AspNetCore.Halcyon.Ext;
 using Threax.AspNetCore.Models;
-using Threax.AspNetCore.Tracking;
 using Shopping.Models;
 using Shopping.Controllers.Api;
 using Threax.AspNetCore.Halcyon.Ext.ValueProviders;
@@ -18,7 +17,7 @@ namespace Shopping.ViewModels
     [HalSelfActionLink(typeof(StoresController), nameof(StoresController.Get))]
     [HalActionLink(typeof(StoresController), nameof(StoresController.Update))]
     [HalActionLink(typeof(StoresController), nameof(StoresController.Delete))]
-    public partial class Store : IStore, IStoreId, ICreatedModified
+    public partial class Store : IStore, IStoreId
     {
         public Guid StoreId { get; set; }
 

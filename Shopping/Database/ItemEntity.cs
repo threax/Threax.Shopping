@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using Halcyon.HAL.Attributes;
 using Threax.AspNetCore.Halcyon.Ext;
 using Threax.AspNetCore.Models;
-using Threax.AspNetCore.Tracking;
 using Shopping.Models;
 
 namespace Shopping.Database 
 {
-    public partial class ItemEntity : IItem, IItemId, ICreatedModified
+    public partial class ItemEntity : IItem, IItemId
     {
         [Key]
         public Guid ItemId { get; set; }

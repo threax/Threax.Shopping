@@ -1,4 +1,3 @@
-using AutoMapper;
 using Shopping.Database;
 using Shopping.InputModels;
 using Shopping.Repository;
